@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8apidemo
+  labels:
+    app: k8apidemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8apidemo
+  template:
+    metadata:
+      labels:
+        app: k8apidemo
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: app
+        image: sekolq/k8apidemo:0.3
+        ports:
+        - containerPort: 8080
